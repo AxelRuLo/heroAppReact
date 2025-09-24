@@ -18,15 +18,11 @@ export const HomePage = () => {
   //     console.log(result);
   //   });
   // }, []);
-  const { data } = useQuery({
+  const { data : HeroesResponse } = useQuery({
     queryKey: ["heroes"],
     queryFn: getHeroesByPageAction,
     staleTime: 1000 * 60 * 5,
-    
   });
-
-  console.log(data)
-
   return (
     <>
       {/* Header */}
@@ -67,7 +63,7 @@ export const HomePage = () => {
 
         <TabsContent value={"all"}>
           <h1>All Character</h1>
-          <HeroGrid />
+          <HeroGrid heroes={HeroesResponse?.heroes} />
         </TabsContent>
         <TabsContent value={"favorites"}>
           <h1>Favorites</h1>
