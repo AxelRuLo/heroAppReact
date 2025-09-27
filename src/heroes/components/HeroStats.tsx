@@ -2,8 +2,10 @@ import { Badge } from "@/components/ui/badge";
 import { Heart, Trophy, Users, Zap } from "lucide-react";
 import HeroStatCard from "./HeroStatCard";
 import CustomBreadCrums from "@/components/custom/CustomBreadCrums";
+import useHeroSumary from "../hooks/useHeroSumary";
 
 export const HeroStats = () => {
+  const { data: SumaryResponse } = useHeroSumary();
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -11,13 +13,15 @@ export const HeroStats = () => {
           title={"Total Characters"}
           icon={<Users className="h-4 w-4 text-muted-foreground" />}
         >
-          <div className="text-2xl font-bold">16</div>
+          <div className="text-2xl font-bold">
+            {SumaryResponse?.totalHeroes}
+          </div>
 
           <Badge variant="secondary" className="text-xs">
-            12 Heroes
+            {SumaryResponse?.heroCount} Heroes
           </Badge>
           <Badge variant="destructive" className="text-xs">
-            2 Villains
+            {SumaryResponse?.villainCount} Villains
           </Badge>
         </HeroStatCard>
 
@@ -33,16 +37,24 @@ export const HeroStats = () => {
           title={"Strongest"}
           icon={<Zap className="h-4 w-4 text-muted-foreground" />}
         >
-          <div className="text-lg font-bold">Superman</div>
-          <p className="text-xs text-muted-foreground">Strength: 10/10</p>
+          <div className="text-lg font-bold">
+            {SumaryResponse?.strongestHero.alias}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Strength: {SumaryResponse?.strongestHero.strength}/10
+          </p>
         </HeroStatCard>
 
         <HeroStatCard
           title={"Smartest"}
           icon={<Trophy className="h-4 w-4 text-muted-foreground" />}
         >
-          <div className="text-lg font-bold">Batman</div>
-          <p className="text-xs text-muted-foreground">Intelligence: 10/10</p>
+          <div className="text-lg font-bold">
+            {SumaryResponse?.smartestHero.alias}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Intelligence: {SumaryResponse?.smartestHero.intelligence}/10
+          </p>
         </HeroStatCard>
       </div>
       <div>

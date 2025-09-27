@@ -4,12 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import type { Hero } from "../types/hero.interface";
+import { useNavigate } from "react-router";
 
 interface Props {
   heroe: Hero;
 }
 
 const HeroGridCard = ({ heroe }: Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/hero/${heroe.slug}`);
+  };
+
   return (
     <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50">
       <div className="relative h-64 ">
@@ -17,6 +24,7 @@ const HeroGridCard = ({ heroe }: Props) => {
           src={heroe.image}
           alt={heroe.alias}
           className="object-cover transition-all duration-500 group-hover:scale-110 absolute top-[-30px] w-full h-[410px]"
+          onClick={handleClick}
         />
 
         {/* Status indicator */}
@@ -133,7 +141,11 @@ const HeroGridCard = ({ heroe }: Props) => {
           <h4 className="font-medium text-sm">Powers:</h4>
           <div className="flex flex-wrap gap-1">
             {heroe.powers.slice(0, 2).map((power) => (
-              <Badge variant="outline" className="text-xs">
+              <Badge
+                variant="outline"
+                className="text-xs"
+                key={`${heroe.name}${power}`}
+              >
                 {power}
               </Badge>
             ))}

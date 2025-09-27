@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
+import { useParams } from "react-router";
 
 export const HeroPage = () => {
-  return (
-    <div>HeroPage</div>
-  )
-}
-
+  const { slugId } = useParams();
+  return <div>HeroPage {slugId}</div>;
+};
