@@ -65,7 +65,9 @@ export const HomePage = () => {
               })
             }
           >
-            All Characters ({SumaryResponse?.totalHeroes})
+            <h1 className="hidden md:block">All Characters</h1>
+            <h1 className="block md:hidden">All</h1>(
+            {SumaryResponse?.totalHeroes})
           </TabsTrigger>
           <TabsTrigger
             value="favorites"
@@ -78,7 +80,9 @@ export const HomePage = () => {
               })
             }
           >
-            Favorites (3)
+            <h1 className="hidden md:block">Favorites</h1>
+            <h1 className="block md:hidden">Favs</h1>
+            (3)
           </TabsTrigger>
           <TabsTrigger
             value="heroes"
@@ -104,7 +108,9 @@ export const HomePage = () => {
               })
             }
           >
-            Villains ({SumaryResponse?.villainCount})
+            <h1 className="hidden md:block">Villains</h1>
+            <h1 className="block md:hidden">Vils</h1>(
+            {SumaryResponse?.villainCount})
           </TabsTrigger>
         </TabsList>
 
