@@ -22,7 +22,7 @@ export const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const activeTab = searchParams.get("activeTab") ?? "all";
-  const page = searchParams.get("page") ?? 0;
+  const page = searchParams.get("page") ?? 1;
   const limit = searchParams.get("limit") ?? 6;
   const category = searchParams.get("category") ?? "all";
   const processedTab = useMemo(() => {
@@ -118,11 +118,11 @@ export const HomePage = () => {
         </TabsContent>
         <TabsContent value={"heroes"}>
           <h1>Heroes</h1>
-          <HeroGrid heroes={HeroesResponse?.heroes}/>
+          <HeroGrid heroes={HeroesResponse?.heroes} />
         </TabsContent>
         <TabsContent value={"villains"}>
           <h1>Villains</h1>
-          <HeroGrid heroes={HeroesResponse?.heroes}/>
+          <HeroGrid heroes={HeroesResponse?.heroes} />
         </TabsContent>
       </Tabs>
       <CustomPagination
