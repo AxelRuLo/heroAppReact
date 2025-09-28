@@ -1,7 +1,7 @@
 import type { HeroesResponse } from "../types/get-heroes.response";
 import { heroApi } from "../api/hero.api"
+import { assingImages } from "@/lib/utils";
 
-const BASE_URL = import.meta.env.VITE_API_URL
 
 interface Props {
     page: number
@@ -20,8 +20,6 @@ export const getHeroesByPageAction = async ({ page, limit = 6, category = "all" 
             category: category
         }
     })
-    const heroesWithImage = data.heroes.map((heroe) => {
-        return { ...heroe, image: `${BASE_URL}images/${heroe.image}` }
-    })
+    const heroesWithImage = assingImages(data.heroes)
     return { ...data, heroes: heroesWithImage }
 };

@@ -76,7 +76,6 @@ export const FavoriteHeroContextProvider = ({
     localStorage.setItem("list_favorities", JSON.stringify(favorities));
   }, [favorities]);
 
-  console.log(favorities)
 
   return (
     <FavoriteHeroContext
