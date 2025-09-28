@@ -10,6 +10,7 @@ interface Props {
 }
 
 const HeroTabs = ({ superheroData }: Props) => {
+
   return (
     <Tabs defaultValue="stats" className="w-full">
       <TabsList className="grid w-full grid-cols-4 mb-8">

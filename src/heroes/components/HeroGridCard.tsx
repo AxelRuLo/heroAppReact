@@ -5,6 +5,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import type { Hero } from "../types/hero.interface";
 import { useNavigate } from "react-router";
+import { FavoriteHeroContext } from "../context/FavoriteHeroContext";
+import { useContext } from "react";
 
 interface Props {
   heroe: Hero;
@@ -16,6 +18,8 @@ const HeroGridCard = ({ heroe }: Props) => {
   const handleClick = () => {
     navigate(`/hero/${heroe.slug}`);
   };
+
+  const { isFavorite, toggleFavorite } = useContext(FavoriteHeroContext);
 
   return (
     <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50">
@@ -56,8 +60,9 @@ const HeroGridCard = ({ heroe }: Props) => {
           size="sm"
           variant="ghost"
           className="absolute bottom-3 right-3 bg-white/90 hover:bg-white"
+          onClick={() => toggleFavorite(heroe)}
         >
-          <Heart className="h-4 w-4 -red-500 text-red-500" />
+          <Heart className={`h-4 w-4 ${isFavorite(heroe)? "fill-red-500 text-red-500":"text-gray-500"}`} />
         </Button>
 
         {/* View details button */}

@@ -13,7 +13,6 @@ export const getHeroesByPageAction = async ({ page, limit = 6, category = "all" 
     if (isNaN(page)) {
         page = 1
     }
-    console.log(category)
     const { data } = await heroApi.get<HeroesResponse>('', {
         params: {
             limit: limit,

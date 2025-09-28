@@ -9,7 +9,6 @@ interface Props {
 }
 
 const HeroCard = ({ dataInfo, title, activeColor, icon }: Props) => {
-  console.log(dataInfo);
   return (
     <Card className="text-center">
       <CardContent className="pt-6">
